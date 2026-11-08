@@ -60,18 +60,20 @@ def qr_decomposition(matrix_a, matrix_n) -> tuple:
         # Przechodzimy przez wszystkie poprzednie kolumny
         # aby obliczyć wartości R i zaktualizować wektor kolumny
         for j in range(i):
-            # Iloczyn skalarny wektora kolumny z kolumną Q
+            # Iloczyn skalarny wektora kolumny z kolumną Q,
+            # jaka część wektora kolumny jest w kierunku Q[:,j]
             matrix_r[j, i] = np.dot(matrix_q[:, j], column_vector)
             # Odejmowanie iloczynu skalarnych od wektora kolumny
             column_vector = column_vector - matrix_r[j][i] * matrix_q[:, j]
 
-        # Normalizacja wektora kolumny
+        # Normalizacja wektora kolumny,
+        # który teraz jest ortogonalny do wszystkich poprzednich kolumn Q
         matrix_r[i][i] = np.linalg.norm(column_vector)
 
         if matrix_r[i][i] < EPS:
             raise ZeroDivisionError
 
-        # Normalizacja wektora kolumny i zapisanie go do macierzy Q
+        # Normalizacja wektora kolumny (długość 1) i zapisanie go do macierzy Q
         matrix_q[:, i] = column_vector / matrix_r[i][i]
 
     return matrix_q, matrix_r
