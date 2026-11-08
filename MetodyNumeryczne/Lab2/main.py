@@ -123,7 +123,7 @@ def main():
     Wczytaj macierz z pliku, zrób rozkład QR i rozwiąż układ równań.
     """
     try:
-        matrix_a, matrix_b, matrix_n = load_matrix_from_file("input2.txt")
+        matrix_a, matrix_b, matrix_n = load_matrix_from_file("test.txt")
 
         print("Rozmiar macierzy:", matrix_n)
         print("Macierz A:", matrix_a)
